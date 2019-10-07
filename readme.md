@@ -9,9 +9,9 @@ Project don't need any modification of car or stock controller
 - Connect nrf pins correctly(we use software spi) 'miso': 32, 'mosi': 33, 'sck': 25, 'csn': 26, 'ce': 27
 - Run "remote.py" in your pc and connect esp32's wifi
 - Key 'w'-go forward,'s'-go backward,'a'-steer left,'d'-steer right'
-    </br>key.up-increase gear,key.down-decrease gear,key.lef-steer trim,key.right-steer trim
-- It has 4 gear and ,you can modify gears and steering sensitivity in "server.py" 
-- wifi access point name is "ESP-carr" with no password
+    </br>key.up-increase gear,key.down-decrease gear,key.left-steer trim,key.right-steer trim
+- It has 4 speed level .you can modify gears and steering sensitivity in "server.py" 
+- Wifi access point name is "ESP-carr" with no password
 
 
 ## Demontration video 
