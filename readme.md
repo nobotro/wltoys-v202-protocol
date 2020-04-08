@@ -15,7 +15,7 @@ Project don't need any modification of car or stock controller
 
 
 ## Demontration video 
-https://www.youtube.com/watch?v=G4_pXiRTcXY
+https://www.youtube.com/watch?v=3xs4lEP5NvE
 
 ## Used resurces 
  - https://github.com/execuc/v202-receiver/blob/master/v202_protocol.cpp
