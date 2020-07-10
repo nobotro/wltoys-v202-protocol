@@ -1,5 +1,3 @@
-# Hello World Example
+# Wltoys v202 protocol esp32 idf
 
-Starts a FreeRTOS task to print "Hello World"
-
-See the README.md file in the upper level 'examples' directory for more information about examples.
+Esp32 idf version is more fast and lagless then micropython version
