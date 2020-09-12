@@ -2,16 +2,18 @@ from pynput.keyboard import Key, Listener
 import socket
 import time
 
-
+import serial
 
 
 
 prev_steering_key=None
-#UDP_IP = "127.0.0.1"
-UDP_IP = "192.168.4.1"
-UDP_PORT = 1327
+
+
+
+
 PREV_KEY=None
 
+ser = serial.Serial('/dev/ttyUSB0',115200, bytesize=8, parity=serial.PARITY_NONE, stopbits=1,timeout=1)
 def on_press(key):
      
     global PREV_KEY,prev_steering_key
@@ -22,8 +24,7 @@ def on_press(key):
             return
         else:
             PREV_KEY = key
-        sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        sock.sendto(str(key).encode(), (UDP_IP, UDP_PORT))
+        ser.write((str(key)+'\n').encode())
         print(key)
         return
     if key == "'s'":
@@ -32,8 +33,7 @@ def on_press(key):
         else:
             PREV_KEY = key
         
-        sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        sock.sendto(key.encode(), (UDP_IP, UDP_PORT))
+        ser.write((str(key)+'\n').encode())
         print(key)
         return
     if key == "'d'":
@@ -42,8 +42,7 @@ def on_press(key):
         else:
             PREV_KEY = key
         prev_steering_key="'d'"
-        sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        sock.sendto(key.encode(), (UDP_IP, UDP_PORT))
+        ser.write((str(key)+'\n').encode())
         print(key)
         return
     if key == "'a'":
@@ -52,8 +51,7 @@ def on_press(key):
         else:
             PREV_KEY = key
         prev_steering_key="'a'"
-        sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        sock.sendto(key.encode(), (UDP_IP, UDP_PORT))
+        ser.write((str(key)+'\n').encode())
         print(key)
         return
     if key == "'t'":
@@ -61,8 +59,7 @@ def on_press(key):
             return
         else:
             PREV_KEY = key
-        sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        sock.sendto(key.encode(), (UDP_IP, UDP_PORT))
+        ser.write((str(key)+'\n').encode())
         print(key)
         return
     if key == "'p'":
@@ -70,28 +67,23 @@ def on_press(key):
             return
         else:
             PREV_KEY = key
-        sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        sock.sendto(key.encode(), (UDP_IP, UDP_PORT))
+        ser.write((str(key)+'\n').encode())
         print(key)
         return
     if key == "Key.up":
-        sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        sock.sendto(key.encode(), (UDP_IP, UDP_PORT))
+        ser.write((str(key)+'\n').encode())
         print(key)
         return
     if key == "Key.down":
-        sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        sock.sendto(key.encode(), (UDP_IP, UDP_PORT))
+        ser.write((str(key)+'\n').encode())
         print(key)
         return
     if key == "Key.left":
-        sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        sock.sendto(key.encode(), (UDP_IP, UDP_PORT))
+        ser.write((str(key)+'\n').encode())
         print(key)
         return
     if key == "Key.right":
-        sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        sock.sendto(key.encode(), (UDP_IP, UDP_PORT))
+        ser.write((str(key)+'\n').encode())
         print(key)
         return
 
@@ -106,8 +98,7 @@ def on_release(key):
             return
         else:
             PREV_KEY = key
-        sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        sock.sendto(key.encode(), (UDP_IP, UDP_PORT))
+        ser.write((str(key)+'\n').encode())
         print(key)
         return
     if key == "!'s'":
@@ -115,8 +106,7 @@ def on_release(key):
             return
         else:
             PREV_KEY = key
-        sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        sock.sendto(key.encode(), (UDP_IP, UDP_PORT))
+        ser.write((str(key)+'\n').encode())
         print(key)
         return
     if key == "!'d'":
@@ -125,8 +115,7 @@ def on_release(key):
         else:
             PREV_KEY = key
         if prev_steering_key=="'d'":
-            sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-            sock.sendto(key.encode(), (UDP_IP, UDP_PORT))
+            ser.write((str(key)+'\n').encode())
             print(key)
         return
     if key == "!'a'":
@@ -135,8 +124,7 @@ def on_release(key):
         else:
             PREV_KEY = key
         if prev_steering_key=="'a'":
-            sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-            sock.sendto(key.encode(), (UDP_IP, UDP_PORT))
+            ser.write((str(key)+'\n').encode())
             print(key)
         return
     if key == "!'t'":
@@ -144,8 +132,7 @@ def on_release(key):
             return
         else:
             PREV_KEY = key
-        sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        sock.sendto(key.encode(), (UDP_IP, UDP_PORT))
+        ser.write((str(key)+'\n').encode())
         print(key)
         return
     if key == "!Key.esc":

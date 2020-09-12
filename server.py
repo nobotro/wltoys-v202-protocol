@@ -5,6 +5,7 @@ import network
 import rc
 import time
 
+from machine import UART
 
 steer_key=None
 gear=1
@@ -36,18 +37,10 @@ def driver():
   rc.setup()
   rc.bind()
  
-  ap = network.WLAN(network.AP_IF) # create access-point interface
-  ap.active(True)         # activate the interface
-  ap.config(essid='ESP-carr') # set the ESSID of the access point
-
   
-  UDP_IP = "0.0.0.0"
-  UDP_PORT = 1327
   
-  sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-  sock.bind((UDP_IP, UDP_PORT))
-  sock.setblocking(0)  
-  
+  uart = UART(2, 115200)  
+  uart.init(115200, bits=8, parity=None, stop=1,timeout=0)
   prev_data=None
   while True:
 
@@ -58,23 +51,19 @@ def driver():
       get_next_steer()
 
     data=None
-    try:
-         
-        data, addr = sock.recvfrom(1024)
-        data=data.decode()
-       
-        if data not in always_exec_keys:
-          if data==prev_data:
-             continue
-          else:
-            prev_data=data
-    except:
-        pass
       
+    data=uart.readline()
+    if data:
+      data=data.decode()[:-1]
+    else:continue
+    if data not in always_exec_keys:
       
-    if not data:
-        
-           continue
+      if data==prev_data:
+         continue
+      else:
+        prev_data=data
+ 
+    
         
     
     key = data
