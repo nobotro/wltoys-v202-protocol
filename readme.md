@@ -3,6 +3,10 @@
 This  project is full functional implementation of wltoys v202 protocol,specified for rc cars A959, A969, A979 in micropython using nrf24l01 and  esp32.
 Project don't need any modification of car or stock controller
 
+##UART version
+
+uart version dont need wifi and is more faster 
+
 
 ## Usage
 - Put "main.py", "rc.py","regs.py" and "server.py" in esp32 board with micropython firmware
@@ -11,7 +15,6 @@ Project don't need any modification of car or stock controller
 - Key 'w'-go forward,'s'-go backward,'a'-steer left,'d'-steer right'
     </br>key.up-increase gear,key.down-decrease gear,key.left-steer trim,key.right-steer trim
 - It has 4 speed level .you can modify gears and steering sensitivity in "server.py" 
-- Wifi access point name is "ESP-carr" with no password
 
 
 ## Demontration video 
